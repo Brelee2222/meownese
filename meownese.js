@@ -60,9 +60,11 @@ function translate(meownese = "") {
 
     const signals = sounds
         .map(soundWords => {
+            // console.log(soundWords);
+            // console.log(soundWords.indexOf("o") < soundWords.indexOf("e"));
             const meowSignals = [];
 
-            if(soundWords[0] == "o")
+            if(soundWords.indexOf("o") < soundWords.indexOf("e"))
                 meowSignals.push(0);
 
             for(const signalPattern of soundWords.split(",")) {
@@ -70,7 +72,8 @@ function translate(meownese = "") {
                 if(rIndex == -1)
                     rIndex = signalPattern.length;
 
-                meowSignals.push(rIndex);
+                if(rIndex > 0)
+                    meowSignals.push(rIndex);
                 // doesn't seem right
                 for(let flicker = 0, flickerLength = signalPattern.length - rIndex - 1; flicker < flickerLength; flicker++)
                     meowSignals.push(1);

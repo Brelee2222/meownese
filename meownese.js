@@ -64,7 +64,7 @@ function translate(meownese = "") {
             // console.log(soundWords.indexOf("o") < soundWords.indexOf("e"));
             const meowSignals = [];
 
-            if(soundWords.indexOf("o") < soundWords.indexOf("e"))
+            if(soundWords.indexOf("e") == -1 || soundWords.indexOf("o") != -1 && soundWords.indexOf("o") < soundWords.indexOf("e"))
                 meowSignals.push(0);
 
             for(const signalPattern of soundWords.split(",")) {
@@ -78,7 +78,7 @@ function translate(meownese = "") {
                 for(let flicker = 0, flickerLength = signalPattern.length - rIndex - 1; flicker < flickerLength; flicker++)
                     meowSignals.push(1);
             }
-
+            
             return meowSignals;
         })
     ;

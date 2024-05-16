@@ -1,24 +1,40 @@
+
+const accents = {
+    "ooooo": "ö",
+    "oooo": "ô",
+    "ooo": "ó",
+    "oo": "ò",
+    "eeeee": "ë",
+    "eeee": "ê",
+    "eee": "é",
+    "ee": "è"
+}
+
 const translateTextbox = document.getElementsByName("translate")[0];
 const meowaccent = document.getElementById("meowaccent");
 
 function clickToMeownese() {
     translateTextbox.value = translateToMeownese(translateTextbox.value);
-    console.log(meowaccent.checked);
+    // console.log(meowaccent.checked);
     if(meowaccent.value) {
-        translateTextbox.value = translateTextbox.value
-        .replaceAll("ooooo", "ö")
-        .replaceAll("oooo", "ô")
-        .replaceAll("ooo", "ó")
-        .replaceAll("oo", "ò")
-        .replaceAll("eeeee", "ë")
-        .replaceAll("eeee", "ê")
-        .replaceAll("eee", "é")
-        .replaceAll("ee", "è");
+        let newTextbox = translateTextbox.value;
+        Object.entries(accents).forEach(entry => {
+            // console.log(entry[0])
+            newTextbox = newTextbox.replaceAll(entry[0], entry[1]);
+        });
+
+        translateTextbox.value = newTextbox;
     }
 }
 
 function clickToEnglish() {
-    translateTextbox.value = translateToEnglish(translateTextbox.value);
+    let newTextbox = translateTextbox.value;
+
+    Object.entries(accents).forEach(entry => {
+        newTextbox = newTextbox.replaceAll(entry[1], entry[0]);
+    });
+
+    translateTextbox.value = translateToEnglish(newTextbox);
 }
 
 function translateToMeownese(text) {

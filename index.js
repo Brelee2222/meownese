@@ -33,8 +33,27 @@ function clickToEnglish() {
     Object.entries(accents).forEach(entry => {
         newTextbox = newTextbox.replaceAll(entry[1], entry[0]);
     });
+    const translation = translateToEnglish(newTextbox);
 
-    translateTextbox.value = translateToEnglish(newTextbox);
+    if(translation.startsWith("openlink ")) {
+        let capitalize = false;
+        window.open(translation.replace("openlink ", "").split("").reduce((prev, curr) => {
+            if(curr == " ") {
+                capitalize = true;
+                return prev;
+            }
+
+            if(capitalize) {
+                capitalize = false;
+                return prev + curr.toUpperCase();
+            }
+
+            return prev + curr;
+        }),
+        "__blank")
+    }
+
+    translateTextbox.value = translation;
 }
 
 function translateToMeownese(text) {

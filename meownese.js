@@ -1,4 +1,21 @@
+const languageLetters = {
+    meownese : {
+        m : "m",
+        e : "e",
+        o : "o",
+        w : "w"
+    },
+
+    woofean : {
+        m : "w",
+        e : "o",
+        o : "a",
+        w : "f"
+    }
+}
+
 function detranslate(alternating = {letters : [], signals : []}) {
+
     const letters = alternating.letters.map(letter => letter);
 
     let currentLetter = letters.shift();

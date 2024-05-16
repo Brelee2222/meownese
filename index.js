@@ -16,7 +16,7 @@ const meowaccent = document.getElementById("meowaccent");
 function clickToMeownese() {
     translateTextbox.value = translateToMeownese(translateTextbox.value);
     // console.log(meowaccent.checked);
-    if(meowaccent.value) {
+    if(meowaccent.checked) {
         let newTextbox = translateTextbox.value;
         Object.entries(accents).forEach(entry => {
             // console.log(entry[0])

@@ -1,21 +1,13 @@
-const languageLetters = {
-    meownese : {
-        m : "m",
-        e : "e",
-        o : "o",
-        w : "w"
-    },
+/**
+ * "Alternating code" is just a different representation of morse code that I made up
+ */
 
-    woofean : {
-        m : "w",
-        e : "o",
-        o : "a",
-        w : "f"
-    }
-}
 
+/**
+ * @param {*} alternating The alternating code to de-translate
+ * @returns The meownese representation of the alternating code
+ */
 function detranslate(alternating = {letters : [], signals : []}) {
-
     const letters = alternating.letters.map(letter => letter);
 
     let currentLetter = letters.shift();
@@ -33,7 +25,7 @@ function detranslate(alternating = {letters : [], signals : []}) {
 
         for(let signalIndex in wordSignals) {
             let signal = wordSignals[signalIndex];
-            // console.log(signal);
+
             if(signal == 1) {
                 if(!flicker) {
                     flicker = true;
@@ -43,7 +35,7 @@ function detranslate(alternating = {letters : [], signals : []}) {
                 flicker = false;
                 sound += "w m";
             }
-            // console.log(signalLength)
+
             while(signal != 0) {
                 let stepLength = Math.min(currentLetter, signal);
 
@@ -67,8 +59,12 @@ function detranslate(alternating = {letters : [], signals : []}) {
     return meowSounds.replaceAll("mrow", "mow").replaceAll("mrew", "mew").replaceAll("mw ", "");
 }
 
+/**
+ * 
+ * @param {*} meownese the meownese representation of the alternating code to translate
+ * @returns the alternating code
+ */
 function translate(meownese = "") {
-    // meownese = meownese.slice(1, meownese-1).replaceAll("w m", ",");
     const sounds = meownese
         .slice(1, -1)
         .replaceAll("w m", ",")
@@ -77,8 +73,6 @@ function translate(meownese = "") {
 
     const signals = sounds
         .map(soundWords => {
-            // console.log(soundWords);
-            // console.log(soundWords.indexOf("o") < soundWords.indexOf("e"));
             const meowSignals = [];
 
             if(soundWords.indexOf("e") == -1 || soundWords.indexOf("o") != -1 && soundWords.indexOf("o") < soundWords.indexOf("e"))
@@ -91,7 +85,7 @@ function translate(meownese = "") {
 
                 if(rIndex > 0)
                     meowSignals.push(rIndex);
-                // doesn't seem right
+
                 for(let flicker = 0, flickerLength = signalPattern.length - rIndex - 1; flicker < flickerLength; flicker++)
                     meowSignals.push(1);
             }

@@ -1,3 +1,6 @@
+/**
+ * Morese code Characters to codes
+ */
 const codes = {
     "a" : ".-",
     "b" : "-...",
@@ -58,6 +61,11 @@ const codes = {
     ">" : "---...."
 };
 
+/**
+ * 
+ * @param {*} text text to encode to morse code
+ * @returns morse code
+ */
 function encode(text = "") {
     return text
         .toLowerCase()
@@ -72,6 +80,11 @@ function encode(text = "") {
         .join("_");
 }
 
+/**
+ * 
+ * @param {*} morseCode morsecode to convert to normal text
+ * @returns text
+ */
 function decode(morseCode = "") {
     return morseCode.split("_").map(sequence => Object.keys(codes)[Object.values(codes).indexOf(sequence)]).join("");
 }
@@ -103,6 +116,11 @@ function toMorseCode(alternating = {letters : [], signals : []}) {
     }).join("_").slice(0, -1);
 }
 
+/**
+ * 
+ * @param {*} morseCode morseCode
+ * @returns a form of morse code that I made up that makes it easier to turn into meownese
+ */
 function toAlternatingCode(morseCode = "") {
     return {
         letters : morseCode

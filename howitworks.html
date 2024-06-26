@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* table {
+                border:1px solid black;
+            }
+             */
+            th {
+                border:1px solid black;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Meownese: How it Works?</h1>
+        <p>Meownese is a language that I made up mainly so that I could secretly and cutely communicate with some of my friends on a server (It lasted for a day before we were told to move our shenanigans into the spam channel). It took me about two class periods to come up with the rules for this language and how it was going to work.</p>
+        <p>The goals that I had for this encryption is as follows:</p>
+        <ul>
+            <li>Make is very hard for a normal person to learn how to decrypt the encryption</li>
+            <li>Make the language seem like it is predictable, while also not being so</li>
+        </ul>
+        <p>In order to encrypt text to meownese, it must first be converted to morse code, then to alternating code – An intermediate step I made up to make the conversion a bit easier –, then finally to meownese.</p>
+        <p>If I wanted to encrypt the phrase “timmy cat”, the first step would be to convert it to morse code (International Morse Code). The resulting code would be -*..*--*--*-.--_-.-.*.-*- (‘ * ’ denoting spaces between letters, and ‘ _ ‘ denoting spaces between words).</p>
+        <p>Next is to turn it into alternating code. Each message in alternating code has two 2 dimensional lists:</p>
+        <p>A list containing the number of morse code signals in each letter (in code, this list is represented as 1 dimensional).</p>
+        <table>
+            <tr>
+                <th>Word 1</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>-</th>
+                            <th>..</th>
+                            <th>--</th>
+                            <th>--</th>
+                            <th>-.--</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>2</th>
+                            <th>2</th>
+                            <th>4</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>Word 2</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>-.-.</th>
+                            <th>.-</th>
+                            <th>-</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>2</th>
+                            <th>1</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <p>A 2 dimensional list containing the “signals in a row” in each word. In other words, it contains the durations a signal repeats itself in each word.</p>
+        <table>
+            <tr>
+                <th>Word 1</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>(no dot)</th>
+                            <th>-</th>
+                            <th>..</th>
+                            <th>-----</th>
+                            <th>.</th>
+                            <th>--</th>
+                        </tr>
+                        <tr>
+                            <th>0</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>5</th>
+                            <th>1</th>
+                            <th>2</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>Word 2</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>-.-.</th>
+                            <th>.-</th>
+                            <th>-</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>2</th>
+                            <th>1</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <p>The resulting alternating code is:</p>
+        <p>Word 1</p>
+        <p>Letters:</p>
+        <p>1 2 2 2 4 </p>
+        <p>Signal:</p>
+        <p>0 1 2 5 1 2</p>
+        <p>Word 2</p>
+        <p>Letters:</p>
+        <p>4 2 1</p>
+        <p>Signal:</p>
+        <p>0 1 1 1 2 2</p>
+        <p>Things get more complicated when converting alternating code to meownese.</p>
+        <p>There’s a few steps to converting alternating code to meownese:</p>
+        <p>For each word, starting with ‘e’s, for each letter add an ‘e’ for the number of times the letter indicates, then swap between using ‘e’s and ‘o’s after each letter. BUT if the starting signal in a word is a 0, then start the alternation with an ‘o’.</p>
+        <table>
+            <tr>
+                <th>Word 1</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>1 (signal starts with 0)</th>
+                            <th>2</th>
+                            <th>2</th>
+                            <th>2</th>
+                            <th>4</th>
+                        </tr>
+                        <tr>
+                            <th>o</th>
+                            <th>ee</th>
+                            <th>oo</th>
+                            <th>ee</th>
+                            <th>oooo</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>Word 2</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>4 (signal starts with 0)</th>
+                            <th>2</th>
+                            <th>1</th>
+                        </tr>
+                        <tr>
+                            <th>oooo</th>
+                            <th>ee</th>
+                            <th>o</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <p>Next, you want to make groups of ‘e’s and ‘o’s in each word equal to the duration of the signals in each word. Combine any singular groups with ones directly to the left of it. Then add m to the start and w to the end of each group:</p>
+        <table>
+            <tr>
+                <th>Word 1</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>0 + 1</th>
+                            <th>2</th>
+                            <th>5 + 1</th>
+                            <th>2</th>
+
+                        </tr>
+                        <tr>
+                            <th>mow</th>
+                            <th>meew</th>
+                            <th>mooeeoow</th>
+                            <th>moow</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>Word 2</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>1 + 1 + 1</th>
+                            <th>2</th>
+                            <th>2</th>
+                        </tr>
+                        <tr>
+                            <th>mooow</th>
+                            <th>moew</th>
+                            <th>meow</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <p>Second to last, you want to add an ‘r’ before the first signal duration that is 1. </p>
+        <table>
+            <tr>
+                <th>Word 1</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>1 (1 by itself is an exception)</th>
+                            <th>2</th>
+                            <th>5 r 1</th>
+                            <th>2</th>
+                        </tr>
+                        <tr>
+                            <th>mow</th>
+                            <th>meew</th>
+                            <th>mooeeorow</th>
+                            <th>moow</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>Word 2</th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>r 1 + 1 + 1</th>
+                            <th>2</th>
+                            <th>2</th>
+                        </tr>
+                        <tr>
+                            <th>mrooow</th>
+                            <th>moew</th>
+                            <th>meow</th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <p>Lastly, we need indicate spaces between words, and to do so, we want to join the first and last groups of each word together by removing the space and m between them:</p>
+        <p>Mow meew mooeeorow moowrooow moew meow</p>
+    </body>
+</html>

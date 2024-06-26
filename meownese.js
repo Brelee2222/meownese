@@ -7,8 +7,9 @@
  * @param {*} alternating The alternating code to de-translate
  * @returns The meownese representation of the alternating code
  */
+
 function detranslate(alternating = {letters : [], signals : []}) {
-    const letters = alternating.letters.map(letter => letter);
+    const letters = alternating.letters.map(letter => letter); // clone list
 
     let currentLetter = letters.shift();
 
@@ -60,7 +61,6 @@ function detranslate(alternating = {letters : [], signals : []}) {
 }
 
 /**
- * 
  * @param {*} meownese the meownese representation of the alternating code to translate
  * @returns the alternating code
  */

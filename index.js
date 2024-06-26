@@ -13,7 +13,7 @@ const accents = {
     "ee": "è"
 };
 
-const translateTextbox = document.getElementsByName("translate")[0]; // The reference for the big text box :3
+const translateTextbox = document.getElementById("translate"); // The reference for the big text box :3
 const meowaccent = document.getElementById("meowaccent"); // The reference for the small meow accent checkbox :3
 
 /**

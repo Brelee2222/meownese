@@ -63,9 +63,8 @@ function clickToEnglish() {
             return prev + curr;
         }),
         "__blank")
-    }
-
-    translateTextbox.value = translation;
+    } else 
+        translateTextbox.value = translation;
 }
 
 /**
